@@ -1,0 +1,24 @@
+<div *ngFor="let brand of brands">
+  <div
+    class="card text-dark bg-light border-primary mb-3"
+    style="max-width: 18rem"
+  >
+    <div class="card-body mx-2">
+      <div class="row">
+        <div class="col-md-8 mt-2">
+          {{ brand.brandName }}
+        </div>
+        <div class="col-md-2">
+          <button mat-icon-button>
+            <mat-icon color="primary" class="mat-18">save</mat-icon>
+          </button>
+        </div>
+        <div class="col-md-2">
+          <button color="warn" mat-icon-button>
+            <mat-icon class="mat-18">close</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

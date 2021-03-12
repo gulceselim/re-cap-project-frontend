@@ -1,0 +1,11 @@
+<div *ngFor="let rent of rents">
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h2 class="card-title">{{ rent.carName }}</h2>
+      <h3 class="card-subtitle mb-2 text-muted">{{ rent.customerName }}</h3>
+      <p class="card-text"><b>Rent Date : </b>{{ rent.rentDate }}</p>
+      <p class="card-text"><b>Return Date : </b>{{ rent.returnDate }}</p>
+      <p class="card-text"><b>Total Price : </b>{{ rent.totalPrice }}</p>
+    </div>
+  </div>
+</div>

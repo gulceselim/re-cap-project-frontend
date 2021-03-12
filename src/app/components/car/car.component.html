@@ -1,0 +1,32 @@
+<div class="row">
+  <div *ngFor="let car of cars">
+    <div class="card mb-3 pt-3 px-3" style="width: 18rem">
+      <img
+        class="card-img-top"
+        src="../../../assets/default.jpg"
+        alt="Card image cap"
+      />
+      <div class="card-body">
+        <h2 class="card-title">{{ car.brandName }}</h2>
+        <p class="card-text"><b>Color: </b>{{ car.colorName }}</p>
+        <p class="card-text"><b>Model Year: </b>{{ car.modelYear }}</p>
+        <p class="card-text"><b>Daily Price: </b>{{ car.dailyPrice }}</p>
+        <p class="card-text"><b>Descriptions: </b>{{ car.descriptions }}</p>
+        <p class="card-text"><b>Image Dath: </b>{{ car.carImageDate }}</p>
+        <div class="row">
+          <div class="col-md-8"></div>
+          <div class="col-md-2">
+            <button mat-icon-button>
+              <mat-icon color="primary" class="mat-18">save</mat-icon>
+            </button>
+          </div>
+          <div class="col-md-2">
+            <button color="warn" mat-icon-button>
+              <mat-icon class="mat-18">close</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

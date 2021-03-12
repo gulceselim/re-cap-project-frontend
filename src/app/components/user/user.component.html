@@ -1,0 +1,24 @@
+<div *ngFor="let user of users" class="row">
+  <div class="col-sm-6">
+    <div
+      class="card bg-light border-primary mb-3"
+      style="width: 18rem"
+      *ngIf="user.status == true"
+    >
+      <div class="card-body">
+        <h2 class="card-title">
+          <div class="row">
+            <div class="col-md-9">{{ user.firstName }} {{ user.lastName }}</div>
+            <div class="col-md-3">
+              <button color="warn" mat-icon-button (click)="deleteUser()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+          </div>
+        </h2>
+        <h4 class="card-subtitle mb-2">{{ user.email }}</h4>
+        <p class="card-text"></p>
+      </div>
+    </div>
+  </div>
+</div>
