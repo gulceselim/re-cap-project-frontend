@@ -14,6 +14,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { CategoryComponent } from './components/category/category.component';
 import { ColorDialogComponent } from './components/color-dialog/color-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarDetailsComponent } from './components/car/car-details/car-details.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavComponent,
     CategoryComponent,
     ColorDialogComponent,
+    CarDetailsComponent,
   ],
   entryComponents: [ColorDialogComponent],
   imports: [
