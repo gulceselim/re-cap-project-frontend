@@ -1,27 +1,10 @@
 <div class="list-group border-primary mb-3">
-  <a
-    href="/brand"
-    class="list-group-item list-group-item-action list-group-item-primary"
-    >Brands</a
+  <li
+    (click)="setCurrentCategory(category)"
+    *ngFor="let category of categories"
+    [class]="getCurrentCategory(category)"
+    routerLink="/{{ category.toLowerCase() }}"
   >
-  <a
-    href="/car"
-    class="list-group-item list-group-item-action list-group-item-primary"
-    >Cars</a
-  >
-  <a
-    href="/color"
-    class="list-group-item list-group-item-action list-group-item-primary"
-    >Colors</a
-  >
-  <a
-    href="/rent"
-    class="list-group-item list-group-item-action list-group-item-primary"
-    >Rents</a
-  >
-  <a
-    href="/user"
-    class="list-group-item list-group-item-action list-group-item-primary active"
-    >Users</a
-  >
+    {{ category }}
+  </li>
 </div>
