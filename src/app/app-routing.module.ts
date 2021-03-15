@@ -35,11 +35,11 @@ const routes: Routes = [
   },
   {
     path: 'cars/color/:colorId',
-    component: CarComponent,
+    component: CarDetailsComponent,
   },
   {
     path: 'cars/brand/:brandId',
-    component: CarComponent,
+    component: CarDetailsComponent,
   },
   {
     path: 'cars/details/:carId',
