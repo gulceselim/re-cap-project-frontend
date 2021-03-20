@@ -1,7 +1,9 @@
-import { MaterialModule } from './components/material/material.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,9 +14,12 @@ import { CarComponent } from './components/car/car.component';
 import { RentComponent } from './components/rent/rent.component';
 import { NavComponent } from './components/nav/nav.component';
 import { CategoryComponent } from './components/category/category.component';
-import { ColorDialogComponent } from './components/color-dialog/color-dialog.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarDetailsComponent } from './components/car/car-details/car-details.component';
+import { FilterCarPipePipe } from './pipes/filter-car-pipe.pipe';
+import { FilterColorPipePipe } from './pipes/filter-color-pipe.pipe';
+import { FilterBrandPipePipe } from './pipes/filter-brand-pipe.pipe';
+import { FilterCarDetailPipePipe } from './pipes/filter-car-detail-pipe.pipe';
+import { FilterColorBrandPipe } from './pipes/filter-color-brand.pipe';
 
 @NgModule({
   declarations: [
@@ -26,16 +31,23 @@ import { CarDetailsComponent } from './components/car/car-details/car-details.co
     RentComponent,
     NavComponent,
     CategoryComponent,
-    ColorDialogComponent,
     CarDetailsComponent,
+    FilterCarPipePipe,
+    FilterColorPipePipe,
+    FilterBrandPipePipe,
+    FilterCarDetailPipePipe,
+    FilterColorBrandPipe,
   ],
-  entryComponents: [ColorDialogComponent],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule,
+    FormsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

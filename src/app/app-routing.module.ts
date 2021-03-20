@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: CarComponent,
+    component: CarDetailsComponent,
   },
   {
     path: 'brand',
@@ -19,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'car',
-    component: CarComponent,
+    component: CarDetailsComponent,
   },
   {
     path: 'color',

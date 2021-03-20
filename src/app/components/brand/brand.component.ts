@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrandComponent implements OnInit {
   brands: Brand[] = [];
+  filterText: string = '';
+  dataLoaded: boolean = false;
 
   constructor(private brandService: BrandService) {}
 
@@ -19,6 +21,7 @@ export class BrandComponent implements OnInit {
   getBrands() {
     this.brandService.getBrands().subscribe((response) => {
       this.brands = response.data;
+      this.dataLoaded = true;
     });
   }
 }

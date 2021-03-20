@@ -1,7 +1,6 @@
 import { CarService } from './../../services/car.service';
 import { Car } from './../../models/car';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-car',
@@ -10,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CarComponent implements OnInit {
   cars: Car[] = [];
+  filterText: string = '';
+  dataLoaded: boolean = false;
 
   constructor(private carService: CarService) {}
 
@@ -20,6 +21,7 @@ export class CarComponent implements OnInit {
   getCars() {
     this.carService.getCars().subscribe((response) => {
       this.cars = response.data;
+      this.dataLoaded = true;
     });
   }
 }

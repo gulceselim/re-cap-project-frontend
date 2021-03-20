@@ -1,4 +1,3 @@
-import { ColorDialogComponent } from './../color-dialog/color-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from './../../models/user';
 import { UserService } from './../../services/user.service';
@@ -11,16 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
   users: User[] = [];
+  dataLoaded: boolean = false;
 
-  constructor(private userService: UserService, public dialog: MatDialog) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.getUsers();
   }
 
-  deleteUser() {
-    this.dialog.open(ColorDialogComponent);
-  }
+  deleteUser() {}
 
   getUsers() {
     this.userService.getUsers().subscribe((response) => {

@@ -1,24 +1,34 @@
+<div class="mb-3">
+  <label for="filterText" class="form-label">Car Name</label>
+  <input
+    type="text"
+    [(ngModel)]="filterText"
+    class="form-control"
+    id="filterText"
+    placeholder="Arama..."
+  />
+</div>
+<div *ngIf="filterText.length > 1" class="alert alert-success">
+  Şunu aradınız {{ filterText }}
+</div>
+
 <div
-  *ngFor="let brand of brands"
-  class="card text-dark bg-light border-primary mb-3"
-  style="max-width: 18rem"
-  routerLink="/cars/brand/{{ brand.id }}"
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-primary"
+  role="status"
 >
-  <div class="card-body mx-2">
-    <div class="row">
-      <div class="col-md-8 mt-2">
-        {{ brand.brandName }}
-      </div>
-      <div class="col-md-2">
-        <button mat-icon-button>
-          <mat-icon color="primary" class="mat-18">save</mat-icon>
-        </button>
-      </div>
-      <div class="col-md-2">
-        <button color="warn" mat-icon-button>
-          <mat-icon class="mat-18">close</mat-icon>
-        </button>
-      </div>
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<div class="row">
+  <div
+    *ngFor="let brand of brands | filterBrandPipe: filterText"
+    class="card text-dark bg-light border-primary mb-3 mx-3 col-md-4"
+    style="max-width: 18rem"
+    routerLink="/cars/brand/{{ brand.id }}"
+  >
+    <div class="card-body mx-2">
+      {{ brand.brandName }}
     </div>
   </div>
 </div>

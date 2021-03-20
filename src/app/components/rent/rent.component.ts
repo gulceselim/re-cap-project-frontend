@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RentComponent implements OnInit {
   rents: Rent[] = [];
+  dataLoaded: boolean = false;
 
   constructor(private rentService: RentService) {}
 

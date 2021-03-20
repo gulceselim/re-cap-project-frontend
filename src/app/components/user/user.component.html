@@ -6,17 +6,8 @@
       *ngIf="user.status == true"
     >
       <div class="card-body">
-        <h2 class="card-title">
-          <div class="row">
-            <div class="col-md-9">{{ user.firstName }} {{ user.lastName }}</div>
-            <div class="col-md-3">
-              <button color="warn" mat-icon-button (click)="deleteUser()">
-                <mat-icon>close</mat-icon>
-              </button>
-            </div>
-          </div>
-        </h2>
-        <h4 class="card-subtitle mb-2">{{ user.email }}</h4>
+        <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
+        <h6 class="card-subtitle mb-2">{{ user.email }}</h6>
         <p class="card-text"></p>
       </div>
     </div>

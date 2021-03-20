@@ -1,8 +1,138 @@
+<div class="mb-3 me-3">
+  <div class="row">
+    <div class="col-md-8">
+      <input
+        type="text"
+        [(ngModel)]="filterText"
+        class="form-control"
+        id="filterText"
+        placeholder="Arama..."
+      />
+    </div>
+    <div class="col-md-1 me-3">
+      <div class="dropdown" *ngIf="colorSelected == ''; else elseBlockForColor">
+        <button
+          class="btn btn-info dropdown-toggle"
+          type="button"
+          id="dropdownMenu3"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Colors
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+          <li *ngFor="let color of colors">
+            <button
+              (click)="currentColor(color)"
+              class="dropdown-item"
+              type="button"
+            >
+              {{ color.colorName }}
+            </button>
+          </li>
+        </ul>
+      </div>
+      <ng-template #elseBlockForColor>
+        <div class="dropdown">
+          <button
+            class="btn btn-info dropdown-toggle"
+            type="button"
+            id="dropdownMenu4"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ colorSelected }}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
+            <li *ngFor="let color of colors">
+              <button
+                (click)="currentColor(color)"
+                class="dropdown-item"
+                type="button"
+              >
+                {{ color.colorName }}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </ng-template>
+    </div>
+    <div class="col-md-1 me-3">
+      <div class="dropdown" *ngIf="brandSelected == ''; else elseBlockForBrand">
+        <button
+          class="btn btn-info dropdown-toggle"
+          type="button"
+          id="dropdownMenu2"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Brands
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <li *ngFor="let brand of brands">
+            <button
+              (click)="currentBrand(brand)"
+              class="dropdown-item"
+              type="button"
+            >
+              {{ brand.brandName }}
+            </button>
+          </li>
+        </ul>
+      </div>
+      <ng-template #elseBlockForBrand>
+        <div class="dropdown">
+          <button
+            class="btn btn-info dropdown-toggle"
+            type="button"
+            id="dropdownMenu2"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ brandSelected }}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <li *ngFor="let brand of brands">
+              <button
+                (click)="currentBrand(brand)"
+                class="dropdown-item"
+                type="button"
+              >
+                {{ brand.brandName }}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </ng-template>
+    </div>
+    <div class="col-md-1 ms-5">
+      <button type="button" (click)="setFilter()" class="btn btn-info">
+        Filtrele
+      </button>
+    </div>
+  </div>
+</div>
+<div *ngIf="filterText.length > 1" class="alert alert-success">
+  Şunu aradınız {{ filterText }}
+</div>
+
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-primary"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
+</div>
+
 <div class="row">
   <div
     class="card col-md-3 mb-3 mx-3 pt-3 px-3"
     style="width: 18rem"
-    *ngFor="let car of cars"
+    *ngFor="
+      let car of cars
+        | filterCarDetailPipe: filterText
+        | filterColorBrandPipe: filterBrandColor
+    "
   >
     <img
       class="card-img-top"
@@ -13,21 +143,117 @@
       <h2 class="card-title">{{ car.brandName }}</h2>
       <p class="card-text"><b>Color: </b>{{ car.colorName }}</p>
       <p class="card-text"><b>Model Year: </b>{{ car.modelYear }}</p>
-      <p class="card-text"><b>Daily Price: </b>{{ car.dailyPrice }}</p>
+      <p class="card-text">
+        <b>Daily Price: </b>{{ car.dailyPrice | currency: "₺" }}
+      </p>
       <p class="card-text"><b>Descriptions: </b>{{ car.descriptions }}</p>
-      <p class="card-text"><b>Image Dath: </b>{{ car.carImageDate }}</p>
+      <p class="card-text"><b>Image Dath: </b>{{ car.carImageDate | date }}</p>
       <div class="row">
         <div class="col-md-8"></div>
         <div class="col-md-2">
-          <button mat-icon-button>
-            <mat-icon color="primary" class="mat-18">save</mat-icon>
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="currentCarForRent(car.carId)"
+          >
+            Kirala
           </button>
         </div>
-        <div class="col-md-2">
-          <button color="warn" mat-icon-button>
-            <mat-icon class="mat-18">close</mat-icon>
-          </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content" *ngFor="let carForRent of carsForRent">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          {{ carForRent.brandName }} - {{ carForRent.colorName }} -
+          {{ carForRent.modelYear }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row mb-2">
+          <label for="example-date-input" class="col-4 col-form-label"
+            >Günlük</label
+          >
+          <div class="col-8">
+            <input
+              type="text"
+              disabled="disabled"
+              [value]="carForRent.dailyPrice | currency: '₺'"
+              class="form-control"
+            />
+          </div>
         </div>
+        <div class="form-group row mb-2">
+          <label for="example-date-input" class="col-4 col-form-label"
+            >Müşteri</label
+          >
+          <div class="col-8">
+            <select class="form-select" [(ngModel)]="customerId">
+              <option [value]="customer.id" *ngFor="let customer of customers">
+                {{ customer.customerName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row mb-2">
+          <label for="example-date-input" class="col-4 col-form-label"
+            >Başlangıç</label
+          >
+          <div class="col-8">
+            <input
+              class="form-control"
+              min="{{ getRentMinDate() }}"
+              value="{{ getRentMinDate() }}"
+              type="date"
+              [(ngModel)]="rentDate"
+            />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-date-input" class="col-4 col-form-label"
+            >Bitiş</label
+          >
+          <div class="col-8">
+            <input
+              class="form-control"
+              min="{{ getReturnMinDate() }}"
+              value="{{ getReturnMinDate() }}"
+              [(ngModel)]="returnDate"
+              type="date"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Kapat
+        </button>
+        <button
+          data-bs-dismiss="modal"
+          type="button"
+          (click)="rentACar(carForRent)"
+          class="btn btn-primary"
+        >
+          Kirala
+        </button>
       </div>
     </div>
   </div>

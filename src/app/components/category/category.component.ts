@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category.component.css'],
 })
 export class CategoryComponent implements OnInit {
-  categories: string[] = ['Car', 'Brand', 'Color', 'Rent', 'User'];
+  categories: string[] = ['car', 'brand', 'color', 'rent', 'user'];
 
   currentCategory: string = 'Car';
 

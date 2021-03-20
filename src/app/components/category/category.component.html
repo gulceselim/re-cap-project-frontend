@@ -3,8 +3,8 @@
     (click)="setCurrentCategory(category)"
     *ngFor="let category of categories"
     [class]="getCurrentCategory(category)"
-    routerLink="/{{ category.toLowerCase() }}"
+    routerLink="/{{ category }}"
   >
-    {{ category }}
+    {{ category | uppercase }}
   </li>
 </div>
