@@ -1,3 +1,4 @@
+import { ResponseModel } from './../models/responseModel';
 import { Rent } from './../models/rent';
 import { ListResponseModel } from './../models/listResponseModel';
 import { HttpClient } from '@angular/common/http';
@@ -18,8 +19,8 @@ export class RentService {
     );
   }
 
-  addRent(rent: Rent): Observable<ListResponseModel<Rent>> {
-    return this.httpClient.post<ListResponseModel<Rent>>(
+  addRent(rent: Rent): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(
       this.apiUrl + 'rentals/add',
       rent
     );

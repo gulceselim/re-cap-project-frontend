@@ -1,3 +1,4 @@
+import { ResponseModel } from './../models/responseModel';
 import { CarDetails } from './../models/carDetails';
 import { Car } from './../models/car';
 import { ListResponseModel } from './../models/listResponseModel';
@@ -37,5 +38,15 @@ export class CarService {
   getCarsByBrand(brandId: number): Observable<ListResponseModel<CarDetails>> {
     let newPath = this.apiUrl + 'cars/getcarbybrand?brandId=' + brandId;
     return this.httpClient.get<ListResponseModel<CarDetails>>(newPath);
+  }
+
+  add(car: Car): Observable<ResponseModel> {
+    let newPath = this.apiUrl + 'cars/add';
+    return this.httpClient.post<ResponseModel>(newPath, car);
+  }
+
+  update(car: Car): Observable<ResponseModel> {
+    let newPath = this.apiUrl + 'cars/';
+    return this.httpClient.post<ResponseModel>(newPath, car);
   }
 }
