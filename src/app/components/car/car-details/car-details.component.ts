@@ -102,7 +102,7 @@ export class CarDetailsComponent implements OnInit {
       rentDate: this.rentDate,
     };
     this.rentService.addRent(rental).subscribe((response) => {
-      this.addRent = response;
+      //this.addRent = response;
       if (this.addRent.success) {
         this.toastrService.success(this.addRent.message, car.brandName);
       } else {
