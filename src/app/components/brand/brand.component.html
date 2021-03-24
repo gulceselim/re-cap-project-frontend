@@ -30,5 +30,13 @@
     <div class="card-body mx-2">
       {{ brand.brandName }}
     </div>
+    <div class="card-footer">
+      <button
+        class="btn-sm btn-primary"
+        routerLink="/brands/update/{{ brand.id }}"
+      >
+        Güncelle
+      </button>
+    </div>
   </div>
 </div>

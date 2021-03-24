@@ -27,8 +27,16 @@
     style="max-width: 18rem"
     routerLink="/cars/color/{{ color.id }}"
   >
-    <div class="card-body mx-2">
+    <div class="card-body">
       {{ color.colorName }}
+    </div>
+    <div class="card-footer">
+      <button
+        class="btn-sm btn-primary"
+        routerLink="/colors/update/{{ color.id }}"
+      >
+        Güncelle
+      </button>
     </div>
   </div>
 </div>
