@@ -1,0 +1,28 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Renk Ekle</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="colorUpdateForm">
+          <div class="form-group">
+            <input
+              type="text"
+              id="colorName"
+              formControlName="colorName"
+              class="form-control"
+              placeholder="Renk adı..."
+              formGroupName="colorName"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-primary" (click)="update()">
+          Güncelle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
