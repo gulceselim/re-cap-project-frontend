@@ -1,3 +1,4 @@
+import { SingleResponseModel } from './../models/singleResponseModel';
 import { ResponseModel } from './../models/responseModel';
 import { Color } from './../models/color';
 import { ListResponseModel } from './../models/listResponseModel';
@@ -33,8 +34,8 @@ export class ColorService {
     );
   }
 
-  getColorById(colorId: number): Observable<ListResponseModel<Color>> {
+  getColorById(colorId: number): Observable<SingleResponseModel<Color>> {
     let newPath = this.apiUrl + 'colors/getbyid?id=' + colorId;
-    return this.httpClient.get<ListResponseModel<Color>>(newPath);
+    return this.httpClient.get<SingleResponseModel<Color>>(newPath);
   }
 }

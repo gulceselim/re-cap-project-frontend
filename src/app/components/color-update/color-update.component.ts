@@ -16,7 +16,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./color-update.component.css'],
 })
 export class ColorUpdateComponent implements OnInit {
-  colors: Color[] = [];
+  colors: Color;
   colorName: Color;
   id: Color;
   colorUpdateForm: FormGroup;
@@ -30,7 +30,6 @@ export class ColorUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.createColorUpdateForm();
-
     this.activatedRoute.params.subscribe((params) => {
       if (params['colorId']) {
         this.getColorById(params['colorId']);
@@ -40,21 +39,17 @@ export class ColorUpdateComponent implements OnInit {
 
   createColorUpdateForm() {
     this.colorUpdateForm = this.formBuilder.group({
-      id: [this.id, Validators.required],
-      colorName: [this.colorName, Validators.required],
+      id: [this.colorUpdateForm ? this.colors.id : '', Validators.required],
+      colorName: [
+        this.colorUpdateForm ? this.colors.colorName : '',
+        Validators.required,
+      ],
     });
   }
 
   getColorById(colorId: number) {
     this.colorService.getColorById(colorId).subscribe((response) => {
       this.colors = response.data;
-      Object.keys(this.colors).forEach((c: any) => {
-        if (c == 'id') {
-          this.id = this.colors[c];
-        } else {
-          this.colorName = this.colors[c];
-        }
-      });
       this.createColorUpdateForm();
     });
   }
