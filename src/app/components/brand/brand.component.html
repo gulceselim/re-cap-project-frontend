@@ -1,13 +1,24 @@
-<div class="mb-3">
-  <label for="filterText" class="form-label">Car Name</label>
-  <input
-    type="text"
-    [(ngModel)]="filterText"
-    class="form-control"
-    id="filterText"
-    placeholder="Arama..."
-  />
+<div class="row">
+  <div class="col">
+    <div class="col">
+      <button type="button" routerLink="/brands/add" class="btn btn-success">
+        Ekle
+      </button>
+    </div>
+  </div>
+  <div class="col-md-11">
+    <div class="mb-3">
+      <input
+        type="text"
+        [(ngModel)]="filterText"
+        class="form-control"
+        id="filterText"
+        placeholder="Arama..."
+      />
+    </div>
+  </div>
 </div>
+
 <div *ngIf="filterText.length > 1" class="alert alert-success">
   Şunu aradınız {{ filterText }}
 </div>
@@ -23,16 +34,16 @@
 <div class="row">
   <div
     *ngFor="let brand of brands | filterBrandPipe: filterText"
-    class="card text-dark bg-light border-primary mb-3 mx-3 col-md-4"
-    style="max-width: 18rem"
+    class="card text-dark border-primary mb-3 mx-2 col-md-4"
+    style="max-width: 10.7rem"
     routerLink="/cars/brand/{{ brand.id }}"
   >
-    <div class="card-body mx-2">
+    <div class="card-body mx-2 text-center">
       {{ brand.brandName }}
     </div>
-    <div class="card-footer">
+    <div class="card-footer bg-transparent btn-group">
       <button
-        class="btn-sm btn-primary"
+        class="btn btn-sm btn-outline-primary"
         routerLink="/brands/update/{{ brand.id }}"
       >
         Güncelle

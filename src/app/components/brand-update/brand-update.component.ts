@@ -62,9 +62,27 @@ export class BrandUpdateComponent implements OnInit {
   update() {
     if (this.brandUpdateForm.valid) {
       let brandModel = Object.assign({}, this.brandUpdateForm.value);
-      this.brandService.update(brandModel).subscribe((response) => {
-        this.toastrService.success(response.message, 'Başarılı');
-      });
+      this.brandService.update(brandModel).subscribe(
+        (response) => {
+          this.toastrService.success(response.message, 'Başarılı');
+        },
+        (responseError) => {
+          if (responseError.error.ValidationErrors != undefined) {
+            for (
+              let i = 0;
+              i < responseError.error.ValidationErrors.length;
+              i++
+            ) {
+              this.toastrService.error(
+                responseError.error.ValidationErrors[i].ErrorMessage,
+                'Doğrulama Hatası'
+              );
+            }
+          } else {
+            this.toastrService.warning(responseError.error.Message, 'Uyarı');
+          }
+        }
+      );
     }
   }
 }
