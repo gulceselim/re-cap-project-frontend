@@ -1,0 +1,47 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Update Profile</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="profileUpdateForm">
+          <div class="form-group">
+            <div class="mb-3">
+              <input
+                type="text"
+                id="firstName"
+                formControlName="firstName"
+                class="form-control"
+                placeholder="First Name"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="text"
+                id="lastName"
+                formControlName="lastName"
+                class="form-control"
+                placeholder="Last Name"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="text"
+                id="email"
+                formControlName="email"
+                class="form-control"
+                placeholder="Email"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-primary" (click)="update()">
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
