@@ -1,10 +1,14 @@
-<div class="list-group border-primary mb-3">
-  <li
-    (click)="setCurrentCategory(category)"
-    *ngFor="let category of categories"
-    [class]="getCurrentCategory(category)"
-    routerLink="/{{ category }}"
-  >
-    {{ category | uppercase }}
-  </li>
+<div class="d-flex flex-column p-3 text-white bg-dark" style="width: 280px">
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li
+      class="nav-item"
+      *ngFor="let category of categories"
+      (click)="setCurrentCategory(category)"
+      [class]="getCurrentCategory(category)"
+      routerLink="/{{ category }}"
+    >
+      {{ category | uppercase }}
+    </li>
+  </ul>
+  <hr />
 </div>
