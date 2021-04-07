@@ -1,4 +1,7 @@
-import { SliderComponent } from './../../components/slider/slider.component';
+import { CarUpdateComponent } from './../../components/car-update/car-update.component';
+import { RentAddComponent } from './../../components/rent-add/rent-add.component';
+import { CreditCardAddComponent } from './../../components/credit-card-add/credit-card-add.component';
+import { ProfileUpdateComponent } from './../../components/profile-update/profile-update.component';
 import { BrandUpdateComponent } from './../../components/brand-update/brand-update.component';
 import { ColorUpdateComponent } from './../../components/color-update/color-update.component';
 import { CarAddComponent } from './../../components/car-add/car-add.component';
@@ -32,7 +35,10 @@ import { FilterColorBrandPipe } from '../../pipes/filter-color-brand.pipe';
     ReactiveFormsModule,
   ],
   declarations: [
-    SliderComponent,
+    CarUpdateComponent,
+    RentAddComponent,
+    CreditCardAddComponent,
+    ProfileUpdateComponent,
     BrandComponent,
     CarDetailsComponent,
     ColorComponent,

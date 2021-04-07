@@ -1,3 +1,7 @@
+import { CarUpdateComponent } from './../../components/car-update/car-update.component';
+import { RentAddComponent } from './../../components/rent-add/rent-add.component';
+import { CreditCardAddComponent } from './../../components/credit-card-add/credit-card-add.component';
+import { ProfileUpdateComponent } from './../../components/profile-update/profile-update.component';
 import { ColorUpdateComponent } from './../../components/color-update/color-update.component';
 import { BrandUpdateComponent } from './../../components/brand-update/brand-update.component';
 import { LoginGuard } from './../../guards/login.guard';
@@ -46,6 +50,10 @@ export const AdminRoutes: Routes = [
     component: CarDetailsComponent,
   },
   {
+    path: 'car/rent/:carId',
+    component: RentAddComponent,
+  },
+  {
     path: 'colors/add',
     component: ColorAddComponent,
   },
@@ -59,11 +67,24 @@ export const AdminRoutes: Routes = [
     canActivate: [LoginGuard],
   },
   {
+    path: 'creditCard/add',
+    component: CreditCardAddComponent,
+    canActivate: [LoginGuard],
+  },
+  {
     path: 'colors/update/:colorId',
     component: ColorUpdateComponent,
   },
   {
     path: 'brands/update/:brandId',
     component: BrandUpdateComponent,
+  },
+  {
+    path: 'users/update/:userId',
+    component: ProfileUpdateComponent,
+  },
+  {
+    path: 'car/update/:carId',
+    component: CarUpdateComponent,
   },
 ];
