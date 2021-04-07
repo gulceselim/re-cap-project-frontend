@@ -1,3 +1,4 @@
+import { HomeComponent } from './pages/home/home.component';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { ComponentsModule } from './components/components.module';
@@ -14,7 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [AppComponent, AdminComponent, AuthComponent],
+  declarations: [AppComponent, AdminComponent, AuthComponent, HomeComponent],
 
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { HomeComponent } from './pages/home/home.component';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { NgModule } from '@angular/core';
@@ -6,8 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'car',
-    pathMatch: 'full',
+    component: HomeComponent,
   },
   {
     path: '',
