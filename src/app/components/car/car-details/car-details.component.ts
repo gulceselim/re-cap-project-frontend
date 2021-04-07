@@ -1,3 +1,9 @@
+import { CarImage } from './../../../models/carImage';
+import { CarImageService } from './../../../services/car-image.service';
+import { CreditCard } from './../../../models/creditCard';
+import { CreditCardService } from './../../../services/credit-card.service';
+import { AuthService } from './../../../services/auth.service';
+import { UserService } from './../../../services/user.service';
 import { Customer } from './../../../models/customer';
 import { CustomerService } from './../../../services/customer.service';
 import { ListResponseModel } from './../../../models/listResponseModel';
@@ -22,7 +28,11 @@ export class CarDetailsComponent implements OnInit {
   cars: CarDetails[];
   customers: Customer[];
   customerId: number;
+  creditCards: CreditCard[];
+  creditCardId: number;
+  currentUserId: number;
   carsForRent: CarDetails[];
+  carImages: CarImage[];
   colors: Color[];
   brands: Brand[];
   filterText: string = '';
@@ -32,7 +42,9 @@ export class CarDetailsComponent implements OnInit {
   filterBrandColor: string[];
   rentDate: Date;
   returnDate: Date;
-  addRent: ListResponseModel<Rent>;
+  addRent: Rent;
+  control: boolean = false;
+  imagePath: string;
 
   constructor(
     private carService: CarService,
@@ -41,10 +53,16 @@ export class CarDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private toastrService: ToastrService,
     private rentService: RentService,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private userService: UserService,
+    private authService: AuthService,
+    private creditCardService: CreditCardService,
+    private carImageService: CarImageService
   ) {}
 
   ngOnInit(): void {
+    this.getCarImages();
+    this.getCurrentUser();
     this.getColors();
     this.getBrands();
     this.getCustomer();
@@ -94,21 +112,24 @@ export class CarDetailsComponent implements OnInit {
     });
   }
 
-  rentACar(car: CarDetails) {
-    let rental: Rent = {
-      carId: car.carId,
-      customerId: 1,
-      returnDate: this.returnDate,
-      rentDate: this.rentDate,
-    };
-    this.rentService.addRent(rental).subscribe((response) => {
-      //this.addRent = response;
-      if (this.addRent.success) {
-        this.toastrService.success(this.addRent.message, car.brandName);
-      } else {
-        this.toastrService.error(this.addRent.message, car.brandName);
-      }
-    });
+  getCreditCardByUserId(currentUserId: number) {
+    this.creditCardService
+      .getAllByUserId(currentUserId)
+      .subscribe((response) => {
+        this.creditCards = response.data;
+        if (this.creditCards.length > 0) {
+          this.control = true;
+        }
+      });
+  }
+
+  getCurrentUser() {
+    this.userService
+      .getUserByEmail(this.authService.getEmail())
+      .subscribe((response) => {
+        this.currentUserId = response.data.id;
+        this.getCreditCardByUserId(this.currentUserId);
+      });
   }
 
   getColors() {
@@ -121,6 +142,22 @@ export class CarDetailsComponent implements OnInit {
     this.brandService.getBrands().subscribe((response) => {
       this.brands = response.data;
     });
+  }
+
+  getCarImages() {
+    this.carImageService.getCarImages().subscribe((response) => {
+      this.carImages = response.data;
+    });
+  }
+
+  getCarImageById(carId: number): string {
+    let imagePath = '';
+    this.carImages.forEach((car) => {
+      if (car.carId == carId) {
+        imagePath = 'https://localhost:44397' + car.imagePath;
+      }
+    });
+    return imagePath;
   }
 
   currentBrand(brand: Brand) {
@@ -140,6 +177,13 @@ export class CarDetailsComponent implements OnInit {
   setFilter() {
     this.filterBrandColor = [];
     this.filterBrandColor.push(this.colorSelected, this.brandSelected);
+  }
+
+  setClear() {
+    this.filterBrandColor = [];
+    this.filterBrandColor.push('', '');
+    this.colorSelected = 'Renk';
+    this.brandSelected = 'Marka';
   }
 
   getRentMinDate() {
