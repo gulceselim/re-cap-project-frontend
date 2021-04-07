@@ -1,3 +1,4 @@
+import { SingleResponseModel } from './../models/singleResponseModel';
 import { ResponseModel } from './../models/responseModel';
 import { CarDetails } from './../models/carDetails';
 import { Car } from './../models/car';
@@ -30,6 +31,11 @@ export class CarService {
     return this.httpClient.get<ListResponseModel<CarDetails>>(newPath);
   }
 
+  getCarById(id: number): Observable<SingleResponseModel<Car>> {
+    let newPath = this.apiUrl + 'cars/getbyid?id=' + id;
+    return this.httpClient.get<SingleResponseModel<Car>>(newPath);
+  }
+
   getCarsByColor(colorId: number): Observable<ListResponseModel<CarDetails>> {
     let newPath = this.apiUrl + 'cars/getcarbycolor?colorId=' + colorId;
     return this.httpClient.get<ListResponseModel<CarDetails>>(newPath);
@@ -46,7 +52,7 @@ export class CarService {
   }
 
   update(car: Car): Observable<ResponseModel> {
-    let newPath = this.apiUrl + 'cars/';
+    let newPath = this.apiUrl + 'cars/update';
     return this.httpClient.post<ResponseModel>(newPath, car);
   }
 }

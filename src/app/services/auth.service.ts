@@ -11,14 +11,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthService {
-  userName: string;
   apiUrl = 'https://localhost:44397/api/';
-  currentUserId: number;
-  roles: string[] = [];
 
   constructor(private httpClient: HttpClient) {}
 
   login(user: LoginModel): Observable<SingleResponseModel<TokenModel>> {
+    this.setUserName(user.email);
     return this.httpClient.post<SingleResponseModel<TokenModel>>(
       this.apiUrl + 'auth/login',
       user
@@ -32,11 +30,24 @@ export class AuthService {
     );
   }
 
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('fullName');
+  }
+
   isAuthenticated() {
     if (localStorage.getItem('token')) {
       return true;
     } else {
       return false;
     }
+  }
+
+  setUserName(fullName: string) {
+    localStorage.setItem('fullName', fullName);
+  }
+
+  getEmail(): string {
+    return localStorage.getItem('fullName');
   }
 }
