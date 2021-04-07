@@ -1,0 +1,79 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Araba Kirala</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="rentAddForm">
+          <div class="form-group">
+            <div class="mb-3">
+              <select
+                class="form-select"
+                [(ngModel)]="customerId"
+                formControlName="customerId"
+              >
+                <option value="" selected="selected" disabled>
+                  Müşteri Seçiniz
+                </option>
+                <option
+                  [ngValue]="customer.id"
+                  *ngFor="let customer of customers"
+                >
+                  {{ customer.customerName }}
+                </option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <input
+                class="form-control"
+                min="{{ getRentMinDate() }}"
+                value="{{ getRentMinDate() }}"
+                type="date"
+                formControlName="rentDate"
+                placeholder="Kiralanacak Tarih"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                class="form-control"
+                min="{{ getReturnMinDate() }}"
+                value="{{ getReturnMinDate() }}"
+                formControlName="returnDate"
+                type="date"
+                placeholder="Teslim Tarihi"
+              />
+            </div>
+          </div>
+        </form>
+        <div class="mb-3" *ngIf="control == true">
+          <select class="form-select" [(ngModel)]="creditCardId">
+            <option value="" disabled>Kredi Kartı seçin</option>
+            <option
+              [value]="creditCard.id"
+              *ngFor="let creditCard of creditCards"
+            >
+              {{ creditCard.fullName }}
+            </option>
+          </select>
+        </div>
+        <div class="mb-3" *ngIf="control == false">
+          <div class="col-8">
+            <button
+              type="button"
+              class="btn btn-success"
+              [routerLink]="['/creditCard/add']"
+              routerLinkActive="router-link-active"
+              data-bs-dismiss="modal"
+            >
+              Kredi Kartı Oluştur
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-primary" (click)="rent()">Ekle</button>
+      </div>
+    </div>
+  </div>
+</div>
