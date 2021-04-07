@@ -35,22 +35,24 @@
               />
             </div>
             <div class="mb-3">
-              <input
-                type="number"
-                id="colorId"
-                formControlName="colorId"
-                class="form-control"
-                placeholder="Renk Id..."
-              />
+              <select class="form-select" formControlName="colorId">
+                <option value="" selected="selected" disabled>
+                  Renk Seçiniz
+                </option>
+                <option [ngValue]="color.id" *ngFor="let color of colors">
+                  {{ color.colorName }}
+                </option>
+              </select>
             </div>
             <div class="mb-3">
-              <input
-                type="number"
-                id="brandId"
-                formControlName="brandId"
-                class="form-control"
-                placeholder="Marka Id..."
-              />
+              <select class="form-select" formControlName="brandId">
+                <option value="" selected="selected" disabled>
+                  Marka Seçiniz
+                </option>
+                <option [ngValue]="brand.id" *ngFor="let brand of brands">
+                  {{ brand.brandName }}
+                </option>
+              </select>
             </div>
           </div>
         </form>

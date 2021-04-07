@@ -1,3 +1,7 @@
+import { ColorService } from './../../services/color.service';
+import { BrandService } from './../../services/brand.service';
+import { Brand } from './../../models/brand';
+import { Color } from './../../models/color';
 import { ToastrService } from 'ngx-toastr';
 import { CarService } from './../../services/car.service';
 import { Component, OnInit } from '@angular/core';
@@ -15,14 +19,20 @@ import {
 })
 export class CarAddComponent implements OnInit {
   carAddForm: FormGroup;
+  colors: Color[];
+  brands: Brand[];
 
   constructor(
     private formBuilder: FormBuilder,
     private carService: CarService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private colorService: ColorService,
+    private brandService: BrandService
   ) {}
 
   ngOnInit(): void {
+    this.getBrands();
+    this.getColors();
     this.createCarAddForm();
   }
 
@@ -57,15 +67,24 @@ export class CarAddComponent implements OnInit {
               );
             }
           } else {
-            this.toastrService.error(
-              responseError.error.Message,
-              'Lütfen Giriş Yapın'
-            );
+            this.toastrService.error(responseError.error.Message, 'Uyarı');
           }
         }
       );
     } else {
       this.toastrService.error('Formunuz eksik', 'Dikkat!');
     }
+  }
+
+  getColors() {
+    this.colorService.getColors().subscribe((response) => {
+      this.colors = response.data;
+    });
+  }
+
+  getBrands() {
+    this.brandService.getBrands().subscribe((response) => {
+      this.brands = response.data;
+    });
   }
 }

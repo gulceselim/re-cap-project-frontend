@@ -1,1 +1,68 @@
-<p>car-update works!</p>
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Araba Güncelle</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="carUpdateForm">
+          <div class="form-group">
+            <div class="mb-3">
+              <input
+                type="text"
+                id="modelYear"
+                formControlName="modelYear"
+                class="form-control"
+                placeholder="Model Yılı"
+              />
+            </div>
+            <div class="mb-3">
+              <input
+                type="number"
+                id="dailyPrice"
+                formControlName="dailyPrice"
+                class="form-control"
+                placeholder="Günlük Fiyat"
+              />
+            </div>
+
+            <div class="mb-3">
+              <select class="form-select" formControlName="brandId">
+                <option value="" selected="selected" disabled>
+                  Marka Seçiniz
+                </option>
+                <option [ngValue]="brand.id" *ngFor="let brand of brands">
+                  {{ brand.brandName }}
+                </option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <select class="form-select" formControlName="colorId">
+                <option value="" selected="selected" disabled>
+                  Renk Seçiniz
+                </option>
+                <option [ngValue]="color.id" *ngFor="let color of colors">
+                  {{ color.colorName }}
+                </option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <input
+                type="text"
+                id="descriptions"
+                formControlName="descriptions"
+                class="form-control"
+                placeholder="Açıklama"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-primary" (click)="update()">
+          Güncelle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
