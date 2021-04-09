@@ -33,6 +33,11 @@
 #### Profile Update
 ![profile_update](https://user-images.githubusercontent.com/43720773/114236105-c9ca9c00-9989-11eb-9e44-ae4cea92e12e.gif)
 
+#### Search
+![search](https://user-images.githubusercontent.com/43720773/114237513-db14a800-998b-11eb-92eb-36e72c43215c.gif)
+
+<hr>
+
 ## Installation
 
 #### Development server
