@@ -1,3 +1,4 @@
+import { CarImageService } from './../../services/car-image.service';
 import { ColorService } from './../../services/color.service';
 import { BrandService } from './../../services/brand.service';
 import { Brand } from './../../models/brand';
@@ -27,7 +28,8 @@ export class CarAddComponent implements OnInit {
     private carService: CarService,
     private toastrService: ToastrService,
     private colorService: ColorService,
-    private brandService: BrandService
+    private brandService: BrandService,
+    private carImageService: CarImageService
   ) {}
 
   ngOnInit(): void {

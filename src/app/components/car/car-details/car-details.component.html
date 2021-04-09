@@ -1,4 +1,4 @@
-<div class="mb-3 me-3">
+<div class="mb-5 me-4">
   <div class="row">
     <div class="col">
       <button type="button" routerLink="/cars/add" class="btn btn-success">
@@ -136,7 +136,7 @@
 
 <div class="row">
   <div
-    class="card col-md-3 mb-3 mx-3 pt-3 px-3 text-center border-primary"
+    class="card col-md-3 mb-3 mx-3 pt-3 px-3 text-center"
     style="width: 18rem"
     *ngFor="
       let car of cars
@@ -182,13 +182,13 @@
           <button
             type="button"
             routerLink="/car/update/{{ car.carId }}"
-            class="btn btn-sm btn-outline-success"
+            class="btn btn-sm btn-success"
           >
             Düzenle
           </button>
           <button
             type="button"
-            class="btn btn-sm btn-outline-danger"
+            class="btn btn-sm btn-danger"
             routerLink="/car/rent/{{ car.carId }}"
           >
             Kirala

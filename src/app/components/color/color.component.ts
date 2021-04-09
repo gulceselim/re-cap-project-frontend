@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { ColorService } from './../../services/color.service';
 import { Color } from './../../models/color';
 import { Component, OnInit } from '@angular/core';
@@ -11,15 +12,21 @@ export class ColorComponent implements OnInit {
   colors: Color[] = [];
   filterText: string = '';
   dataLoaded: boolean = false;
-  constructor(private colorService: ColorService) {}
+  constructor(
+    private colorService: ColorService,
+    private toastrService: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.getColors();
   }
 
-  deleteColor() {}
-
-  updateColor() {}
+  delete(color: Color) {
+    this.colorService.delete(color).subscribe((response) => {
+      this.toastrService.success(response.message, 'Başarılı');
+      this.getColors();
+    });
+  }
 
   getColors() {
     this.colorService.getColors().subscribe((response) => {

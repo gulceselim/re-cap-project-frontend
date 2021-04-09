@@ -36,9 +36,11 @@
     *ngFor="let brand of brands | filterBrandPipe: filterText"
     class="card text-dark border-primary mb-3 mx-2 col-md-4"
     style="max-width: 10.7rem"
-    routerLink="/cars/brand/{{ brand.id }}"
   >
-    <div class="card-body mx-2 text-center">
+    <div
+      class="card-body mx-2 text-center"
+      routerLink="/cars/brand/{{ brand.id }}"
+    >
       {{ brand.brandName }}
     </div>
     <div class="card-footer bg-transparent btn-group">
@@ -47,6 +49,9 @@
         routerLink="/brands/update/{{ brand.id }}"
       >
         Güncelle
+      </button>
+      <button class="btn btn-sm btn-outline-danger" (click)="delete(brand)">
+        Sil
       </button>
     </div>
   </div>

@@ -44,7 +44,14 @@
           <p class="p-color">
             Kullandığınız gün kadar ödeme yapın. Merak etmeyin depo bizden😉
           </p>
-          <p><a class="btn btn-lg btn-primary" href="#">İncele</a></p>
+          <p>
+            <a
+              class="btn btn-lg btn-primary"
+              [routerLink]="['/car']"
+              routerLinkActive="router-link-active"
+              >İncele</a
+            >
+          </p>
         </div>
       </div>
     </div>
@@ -88,7 +95,14 @@
           <p class="p-color">
             Kiraladığınız arabalar ile dilediğiniz geziler düzenleyebilirsiniz.
           </p>
-          <p><a class="btn btn-lg btn-primary" href="#">Markaları İncele</a></p>
+          <p>
+            <a
+              class="btn btn-lg btn-primary"
+              [routerLink]="['/brand']"
+              routerLinkActive="router-link-active"
+              >Markaları İncele</a
+            >
+          </p>
         </div>
       </div>
     </div>
@@ -306,6 +320,6 @@
 <!-- /.container -->
 
 <!-- FOOTER -->
-<footer class="container">
+<footer class="container text-center">
   <p>© 2021 Selim Gülce</p>
 </footer>
