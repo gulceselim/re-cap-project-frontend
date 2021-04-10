@@ -36,6 +36,16 @@
 #### Search
 ![search](https://user-images.githubusercontent.com/43720773/114237513-db14a800-998b-11eb-92eb-36e72c43215c.gif)
 
+#### Register
+![register](https://user-images.githubusercontent.com/43720773/114282772-b2091b80-9a4e-11eb-9c65-57f738b8c369.gif)
+
+
+#### Add Credit Card
+![add-credit-card](https://user-images.githubusercontent.com/43720773/114282766-ae759480-9a4e-11eb-99c4-90b24e22848b.gif)
+
+#### Unauthorized
+![Unauthorized](https://user-images.githubusercontent.com/43720773/114282770-b1708500-9a4e-11eb-8311-d92f4a60e43b.gif)
+
 <hr>
 
 ## Installation
