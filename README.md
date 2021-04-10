@@ -8,6 +8,23 @@
 - Bu repository, Backend'ini yazmış olduğum [Rent A Car](https://github.com/gulceselim/re-cap-project-with-csharp) projesinin frontend kodlarıdır.
 - Bu proje [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4 kullanılarak oluşturulmuştur.
 
+
+## Table of Contents
+- [Home Page](#home-page)
+- [Login Page](#login-page)
+- [Update Car](#update-car)
+- [Rent A Car](#rent-car)
+- [Filter Car](#filter-car)
+- [Brand](#brand)
+- [Color](#color)
+- [Profile Update](#profile-update)
+- [Search](#search)
+- [Register](#register)
+- [Add Credit Card](#add-credit-card)
+- [Unauthorized](#unauthorized)
+
+
+
 ## Usage
 #### Home Page
 ![home_page](https://user-images.githubusercontent.com/43720773/114236068-be777080-9989-11eb-86a7-dab0603d7562.gif)
